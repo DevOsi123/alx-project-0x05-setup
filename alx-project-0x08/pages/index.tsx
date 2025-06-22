@@ -2,22 +2,16 @@ import ImageCard from "@/components/common/ImageCard";
 import { ImageProps } from "@/interfaces";
 import { useState } from "react";
 
-
-
 const Home: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [generatedImages, setGeneratedImages] = useState<ImageProps[]>(
-    []
-  );
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-
+  const [generatedImages, setGeneratedImages] = useState<ImageProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleGenerateImage = async () => {
-    const handleGenerateImage = async () => {
-  console.log("Generating Image");
-  console.log(process.env.NEXT_PUBLIC_GPT_API_KEY);
-};
+    console.log("Generating Image");
+    console.log(process.env.NEXT_PUBLIC_GPT_API_KEY);
+    // You can add API call logic here later
   };
 
   return (
@@ -40,14 +34,17 @@ const Home: React.FC = () => {
             onClick={handleGenerateImage}
             className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
           >
-            {/* {
-              isLoading ? "Loading..." : "Generate Image"
-            } */}
-            Generate Image
+            {isLoading ? "Loading..." : "Generate Image"}
           </button>
         </div>
 
-        {imageUrl && <ImageCard action={() => setImageUrl(imageUrl)} imageUrl={imageUrl} prompt={prompt} />}
+        {imageUrl && (
+          <ImageCard
+            action={() => setImageUrl("")}
+            imageUrl={imageUrl}
+            prompt={prompt}
+          />
+        )}
       </div>
     </div>
   );
